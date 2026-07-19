@@ -10,6 +10,25 @@
 </head>
 <body>
 
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-circle-wrap">
+      <svg viewBox="0 0 150 150" width="150" height="150">
+        <circle cx="75" cy="75" r="66" fill="none" stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
+        <line x1="75" y1="9"  x2="75" y2="27"  stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
+        <line x1="75" y1="123" x2="75" y2="141" stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
+        <line x1="9"  y1="75" x2="27" y2="75"  stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
+        <line x1="123" y1="75" x2="141" y2="75" stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
+        <line x1="27.8" y1="27.8" x2="40" y2="40" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
+        <line x1="122.2" y1="27.8" x2="110" y2="40" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
+        <line x1="27.8" y1="122.2" x2="40" y2="110" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
+        <line x1="122.2" y1="122.2" x2="110" y2="110" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
+      </svg>
+      <div class="intro-number" id="introNumber">3</div>
+    </div>
+    <div class="intro-skip">Click to skip</div>
+  </div>
+  <div class="intro-flash" id="introFlash"></div>
+
   <nav class="nav">
     <a href="index.html" class="nav-logo">BENSKI <span>FILMS</span></a>
     <ul class="nav-links">
@@ -65,7 +84,7 @@
   <section>
     <div class="eyebrow">Welcome</div>
     <h2 class="section-title">Meet the Filmmaker</h2>
-    <p class="statement">A senior Computer Science student at Al Akhawayn University with a minor in Communication Studies, known to most as "Benski." This reel brings together the short films, assignments, and collaborations made across Intro to Film, from quiet visual experiments to darker character studies.</p>
+    <p class="statement">A senior Computer Science student at Al Akhawayn University with a minor in Communication Studies, known to most as "Benski." This reel brings together the short films, assignments, and collaborations made across Intro to Film — from quiet visual experiments to darker character studies.</p>
     <a href="projects.html" class="btn">View Projects</a>
     <a href="about.html" class="btn" style="margin-left:14px;">About Me</a>
   </section>
@@ -88,6 +107,61 @@
   const lensImg = document.getElementById('lensImg');
   lensImg.style.backgroundImage = `url(${IMAGES.profile})`;
   lensImg.style.cursor = 'default';
+
+  // ---- film-leader countdown intro ----
+  const overlay = document.getElementById('introOverlay');
+  const numberEl = document.getElementById('introNumber');
+  const flash = document.getElementById('introFlash');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function endIntro(){
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  if (prefersReducedMotion || !overlay) {
+    if (overlay) overlay.remove();
+    endIntro();
+  } else {
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    let skipped = false;
+    let finished = false;
+
+    function finish(){
+      if (finished) return;
+      finished = true;
+      flash.classList.add('flash-on');
+      setTimeout(() => {
+        flash.classList.remove('flash-on');
+        flash.classList.add('flash-off');
+        overlay.classList.add('intro-hidden');
+        endIntro();
+      }, 90);
+      setTimeout(() => overlay.remove(), 700);
+    }
+
+    overlay.addEventListener('click', () => {
+      skipped = true;
+      finish();
+    });
+
+    const sequence = ['3', '2', '1'];
+    let i = 0;
+    numberEl.textContent = sequence[i];
+
+    const timer = setInterval(() => {
+      if (skipped) { clearInterval(timer); return; }
+      i++;
+      if (i >= sequence.length) {
+        clearInterval(timer);
+        finish();
+      } else {
+        numberEl.textContent = sequence[i];
+      }
+    }, 550);
+  }
 })();
 </script>
 </body>
