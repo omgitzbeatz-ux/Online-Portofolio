@@ -329,26 +329,36 @@ section{
 .gear-list{
   margin-top:26px;
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
   gap:0;
   border-top:1px solid var(--slate);
 }
 .gear-item{
-  padding:16px 4px;
+  padding:16px 20px 16px 4px;
   border-bottom:1px solid var(--slate);
-  display:flex; justify-content:space-between; align-items:baseline;
-  gap:12px;
+  display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline;
+  gap:6px 12px;
+  min-width:0;
 }
-.gear-item .g-name{ font-size:14px; color:var(--paper); }
+.gear-item .g-name{ font-size:14px; color:var(--paper); min-width:0; }
 .gear-item .g-tag{
-  font-size:10px; color:var(--brass); letter-spacing:.1em; text-transform:uppercase; white-space:nowrap;
+  font-size:10px; color:var(--brass); letter-spacing:.1em; text-transform:uppercase; white-space:normal; text-align:right;
 }
 
 /* ---------- CONTACT / END SLATE ---------- */
 .end-slate{
-  background:var(--ink-soft);
+  background:
+    linear-gradient(180deg, rgba(20,18,23,0.90), rgba(20,18,23,0.94)),
+    url('contact-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-top:2px solid #000;
   padding:90px 6vw 60px;
+  min-height:70vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
   text-align:center;
 }
 .end-slate h2{
