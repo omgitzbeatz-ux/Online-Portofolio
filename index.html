@@ -11,23 +11,12 @@
 <body>
 
   <div class="intro-overlay" id="introOverlay">
-    <div class="intro-circle-wrap">
-      <svg viewBox="0 0 150 150" width="150" height="150">
-        <circle cx="75" cy="75" r="66" fill="none" stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
-        <line x1="75" y1="9"  x2="75" y2="27"  stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
-        <line x1="75" y1="123" x2="75" y2="141" stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
-        <line x1="9"  y1="75" x2="27" y2="75"  stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
-        <line x1="123" y1="75" x2="141" y2="75" stroke="var(--paper)" stroke-width="1.2" opacity="0.55"/>
-        <line x1="27.8" y1="27.8" x2="40" y2="40" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
-        <line x1="122.2" y1="27.8" x2="110" y2="40" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
-        <line x1="27.8" y1="122.2" x2="40" y2="110" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
-        <line x1="122.2" y1="122.2" x2="110" y2="110" stroke="var(--paper)" stroke-width="1.2" opacity="0.4"/>
-      </svg>
-      <div class="intro-number" id="introNumber">3</div>
+    <div class="intro-content">
+      <div class="intro-title" id="introTitle">BENSKI <span>FILMS</span></div>
+      <div class="intro-subtitle" id="introSubtitle">Intro to Film — Student Reel</div>
     </div>
-    <div class="intro-skip">Click to skip</div>
+    <div class="intro-skip" id="introSkip">Click to skip</div>
   </div>
-  <div class="intro-flash" id="introFlash"></div>
 
   <nav class="nav">
     <a href="index.html" class="nav-logo">BENSKI <span>FILMS</span></a>
@@ -108,10 +97,11 @@
   lensImg.style.backgroundImage = `url(${IMAGES.profile})`;
   lensImg.style.cursor = 'default';
 
-  // ---- film-leader countdown intro ----
+  // ---- iris-wipe intro reveal ----
   const overlay = document.getElementById('introOverlay');
-  const numberEl = document.getElementById('introNumber');
-  const flash = document.getElementById('introFlash');
+  const title = document.getElementById('introTitle');
+  const subtitle = document.getElementById('introSubtitle');
+  const skipLabel = document.getElementById('introSkip');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function endIntro(){
@@ -126,41 +116,35 @@
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
 
-    let skipped = false;
-    let finished = false;
+    let done = false;
 
-    function finish(){
-      if (finished) return;
-      finished = true;
-      flash.classList.add('flash-on');
+    function reveal(fast){
+      if (done) return;
+      done = true;
+      title.classList.remove('intro-title-visible');
+      subtitle.classList.remove('intro-title-visible');
+      skipLabel.classList.remove('intro-title-visible');
+      if (fast) overlay.classList.add('intro-fast');
+      overlay.classList.add('intro-reveal');
+      const duration = fast ? 500 : 1150;
       setTimeout(() => {
-        flash.classList.remove('flash-on');
-        flash.classList.add('flash-off');
         overlay.classList.add('intro-hidden');
         endIntro();
-      }, 90);
-      setTimeout(() => overlay.remove(), 700);
+        overlay.remove();
+      }, duration + 30);
     }
 
-    overlay.addEventListener('click', () => {
-      skipped = true;
-      finish();
+    overlay.addEventListener('click', () => reveal(true));
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        title.classList.add('intro-title-visible');
+        subtitle.classList.add('intro-title-visible');
+        skipLabel.classList.add('intro-title-visible');
+      }, 120);
     });
 
-    const sequence = ['3', '2', '1'];
-    let i = 0;
-    numberEl.textContent = sequence[i];
-
-    const timer = setInterval(() => {
-      if (skipped) { clearInterval(timer); return; }
-      i++;
-      if (i >= sequence.length) {
-        clearInterval(timer);
-        finish();
-      } else {
-        numberEl.textContent = sequence[i];
-      }
-    }, 550);
+    setTimeout(() => reveal(false), 1400);
   }
 })();
 </script>
