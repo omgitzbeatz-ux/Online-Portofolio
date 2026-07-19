@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Belbaraka — Film Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">BENSKI <span>FILMS</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg" id="heroBg">
+      <div class="hero-bg-photo" id="heroBgPhoto"></div>
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="lens-wrap">
+      <div class="lens" id="lensImg"></div>
+      <div class="lens-label">Mohammed "Benski" Belbaraka</div>
+    </div>
+
+    <div class="clap-top"></div>
+
+    <div class="slate">
+      <h1 class="slate-title">Mohammed Benabdallah Belbaraka</h1>
+      <div class="slate-sub">Filmmaker · Cinematographer · Editor</div>
+
+      <div class="slate-fields">
+        <div class="field">
+          <label>Production</label>
+          <div class="val">Faceless</div>
+        </div>
+        <div class="field">
+          <label>Director</label>
+          <div class="val">Mohammed Benabdallah Belbaraka</div>
+        </div>
+        <div class="field">
+          <label>Scene / Take</label>
+          <div class="val">Student Reel / Take 01</div>
+        </div>
+        <div class="field">
+          <label>Class</label>
+          <div class="val">COM 2404 01</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sprockets"></div>
+
+  <!-- INTRO -->
+  <section>
+    <div class="eyebrow">Welcome</div>
+    <h2 class="section-title">Meet the Filmmaker</h2>
+    <p class="statement">A senior Computer Science student at Al Akhawayn University with a minor in Communication Studies, known to most as "Benski." This reel brings together the short films, assignments, and collaborations made across Intro to Film — from quiet visual experiments to darker character studies.</p>
+    <a href="projects.html" class="btn">View Projects</a>
+    <a href="about.html" class="btn" style="margin-left:14px;">About Me</a>
+  </section>
+
+  <footer>Mohammed Benabdallah Belbaraka · COM 2404 01</footer>
+
+<script>
+(function(){
+  const IMAGES = {
+    profile: "images/profile.jpg",
+    heroBg: "images/hero-background.jpg"
+  };
+
+  // ---- hero background (finalized) ----
+  const heroBgPhoto = document.getElementById('heroBgPhoto');
+  heroBgPhoto.style.backgroundImage = `url(${IMAGES.heroBg})`;
+  heroBgPhoto.style.backgroundPosition = 'center 30%';
+
+  // ---- profile photo (finalized) ----
+  const lensImg = document.getElementById('lensImg');
+  lensImg.style.backgroundImage = `url(${IMAGES.profile})`;
+  lensImg.style.cursor = 'default';
+})();
+</script>
+</body>
+</html>
