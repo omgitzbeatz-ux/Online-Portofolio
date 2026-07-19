@@ -470,4 +470,46 @@ footer{
   font-style:italic;
 }
 
+.lab-list{
+  margin-top:26px;
+  border-top:1px solid var(--slate);
+}
+.lab-item{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  padding:22px 4px;
+  border-bottom:1px solid var(--slate);
+  transition:padding-left .2s ease, border-color .2s ease;
+}
+.lab-item:hover{
+  padding-left:14px;
+  border-bottom-color:var(--brass);
+}
+.lab-item-top{
+  display:flex;
+  align-items:baseline;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.lab-item .frame-num{ font-size:12px; }
+.lab-item .frame-title{ font-size:1.6rem; }
+.lab-item:hover .frame-title{ color:var(--brass); }
+.lab-item .frame-role{ margin-top:0; }
+.lab-item .frame-desc{ margin-top:8px; max-width:760px; }
+
+.frame-img.no-still{
+  background-color:#0f0d11;
+  background-image: repeating-linear-gradient(135deg, rgba(237,231,217,0.035) 0 14px, transparent 14px 28px);
+  flex-direction:column;
+  gap:10px;
+}
+.frame-img.no-still svg{ opacity:.35; }
+.frame-img.no-still .no-still-label{
+  font-size:10px;
+  letter-spacing:.15em;
+  color:var(--slate);
+  text-transform:uppercase;
+}
+
 svg{display:block;}
