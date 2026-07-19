@@ -66,6 +66,24 @@
   </section>
 
   <footer>Mohammed Benabdallah Belbaraka · COM 2404 01</footer>
+  <script>
+  (function(){
+  const IMAGES = {
+    profile: "profile.jpg",
+    heroBg: "hero-background.jpg"
+  };
+
+  // ---- hero background (finalized) ----
+  const heroBgPhoto = document.getElementById('heroBgPhoto');
+  heroBgPhoto.style.backgroundImage = `url(${IMAGES.heroBg})`;
+  heroBgPhoto.style.backgroundPosition = 'center 30%';
+
+  // ---- profile photo (finalized) ----
+  const lensImg = document.getElementById('lensImg');
+  lensImg.style.backgroundImage = `url(${IMAGES.profile})`;
+  lensImg.style.cursor = 'default';
+})();
+</script>
 
 </body>
 </html>
