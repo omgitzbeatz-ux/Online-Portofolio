@@ -20,9 +20,12 @@
     </ul>
   </nav>
 
-  <div class="page-header">
-    <div class="eyebrow">About the Filmmaker</div>
-    <h1>Bio</h1>
+  <div class="page-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+    <div>
+      <div class="eyebrow">About the Filmmaker</div>
+      <h1>Bio</h1>
+    </div>
+    <div class="lens" id="lensImg" style="width:110px; height:110px; flex-shrink:0;"></div>
   </div>
 
   <section>
@@ -66,19 +69,14 @@
   </section>
 
   <footer>Mohammed Benabdallah Belbaraka · COM 2404 01</footer>
+
   <script>
   (function(){
-  const IMAGES = {
-    profile: "profile.jpg",
-    heroBg: "hero-background.jpg"
-  };
-
-  // ---- profile photo (finalized) ----
-  const lensImg = document.getElementById('lensImg');
-  lensImg.style.backgroundImage = `url(${IMAGES.profile})`;
-  lensImg.style.cursor = 'default';
-})();
-</script>
+    const lensImg = document.getElementById('lensImg');
+    lensImg.style.backgroundImage = `url(profile.jpg)`;
+    lensImg.style.cursor = 'default';
+  })();
+  </script>
 
 </body>
 </html>
